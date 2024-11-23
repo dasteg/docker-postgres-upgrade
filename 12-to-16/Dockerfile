@@ -4,22 +4,22 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM postgres:14-bookworm
+FROM postgres:16-bookworm
 
-RUN sed -i 's/$/ 13/' /etc/apt/sources.list.d/pgdg.list
+RUN sed -i 's/$/ 12/' /etc/apt/sources.list.d/pgdg.list
 
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		postgresql-13='13.18-1.pgdg120+1' \
+		postgresql-12='12.22-1.pgdg120+1' \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ENV PGBINOLD /usr/lib/postgresql/13/bin
-ENV PGBINNEW /usr/lib/postgresql/14/bin
+ENV PGBINOLD /usr/lib/postgresql/12/bin
+ENV PGBINNEW /usr/lib/postgresql/16/bin
 
-ENV PGDATAOLD /var/lib/postgresql/13/data
-ENV PGDATANEW /var/lib/postgresql/14/data
+ENV PGDATAOLD /var/lib/postgresql/12/data
+ENV PGDATANEW /var/lib/postgresql/16/data
 
 RUN set -eux; \
 	mkdir -p "$PGDATAOLD" "$PGDATANEW"; \
